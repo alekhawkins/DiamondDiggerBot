@@ -13,7 +13,9 @@ namespace DiamondDiggerBot
 {
 	public partial class Form1 : Form
 	{
-		public Form1()
+        XNAPopupWindow xnaWindow;
+
+        public Form1()
 		{
 			InitializeComponent();
 		}
@@ -76,5 +78,19 @@ namespace DiamondDiggerBot
 			}
 			return Color.FromArgb(rSum / numColors, gSum / numColors, bSum / numColors);
 		}
-	}
+
+        private void Button1_Click(object sender, EventArgs e)
+        {
+            if (xnaWindow == null)
+            {
+                xnaWindow = new XNAPopupWindow();
+                int height = 500;
+                int width = 500;
+                int startBarHeight = 50;
+                //xnaWindow.UpdateWindowRect(new Rectangle(0, 0, Screen.PrimaryScreen.WorkingArea.Width, Screen.PrimaryScreen.WorkingArea.Height - 50));
+                xnaWindow.UpdateWindowRect(new Rectangle((Screen.PrimaryScreen.WorkingArea.Width-width)/2, (Screen.PrimaryScreen.WorkingArea.Height - startBarHeight - height - XNAPopupWindow.STATUS_BAR_HEIGHT)/2, height, width));
+                xnaWindow.UpdatePopupWindow(new Microsoft.Xna.Framework.Rectangle(0, 0, 500, 500), "     Alek smells");
+            }
+        }
+    }
 }
